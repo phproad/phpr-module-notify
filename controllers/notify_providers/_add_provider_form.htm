@@ -1,0 +1,41 @@
+<div>
+	<h2>Add Notification Provider</h2>
+	<div class="content">
+		<div class="form-400">
+			<?=Phpr_Form::open_tag() ?>
+				<? if (!isset($fatalError)): ?>
+					<div class="scrollable-list thickBorder height-400">
+						<ul class="selectable-list">
+						<?
+							$last_index = count($provider_list)-1;
+						?>
+						<? foreach ($provider_list as $index => $provider): ?>
+							<?
+								$name = $provider->get_name();
+								$description = $provider->get_description();
+								$url = url('/notify/providers/create/'.get_class($provider));
+							?>
+							<li class="<?=($index == $last_index)?'last':''?>">
+								<a href="<?=$url ?>">
+									<span class="title"><?=h($name) ?></span>
+									<? if ($description): ?>
+										<span class="description">
+											<?=h($description) ?>
+										</span>
+									<? endif ?>
+								</a>
+							</li>
+						<? endforeach ?>
+						</ul>
+					</div>
+					<?=admin_button('Cancel', array('onclick'=>'return cancelPopup()')) ?>
+					<div class="clear"></div>
+				<? else: ?>
+					<?=flash()?>
+					<?=admin_button('Cancel', array('onclick'=>'return cancelPopup()')) ?>
+					<div class="clear"></div>
+				<? endif ?>
+			</form>
+		</div>
+	</div>
+</div>
