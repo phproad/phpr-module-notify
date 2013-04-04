@@ -2,7 +2,7 @@
 
 class Notify_Templates extends Admin_Settings_Controller
 {
-	public $implement = 'Db_ListBehavior, Db_FormBehavior';
+	public $implement = 'Db_List_Behavior, Db_Form_Behavior';
 	public $list_model_class = 'Notify_Template';
 	public $list_record_url = null;
 
@@ -30,8 +30,8 @@ class Notify_Templates extends Admin_Settings_Controller
 		$this->app_menu = 'system';
 		$this->app_module_name = 'System';
 
-		$this->list_record_url = url('/notify/templates/edit/');
-		$this->form_redirect = url('/notify/templates/');
+		$this->list_record_url = url('notify/templates/edit');
+		$this->form_redirect = url('notify/templates');
 	}
 	
 	public function index()

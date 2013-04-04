@@ -13,7 +13,7 @@
 							<?
 								$name = $provider->get_name();
 								$description = $provider->get_description();
-								$url = url('/notify/providers/create/'.get_class($provider));
+								$url = url('notify/providers/create/'.get_class($provider));
 							?>
 							<li class="<?=($index == $last_index)?'last':''?>">
 								<a href="<?=$url ?>">

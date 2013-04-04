@@ -55,7 +55,7 @@ class Notify_Template extends Db_ActiveRecord
 
 	public function after_fetch()
 	{
-		$this->define_form_fields();
+		$this->init_form_fields();
 	}
 
 	public function before_create($session_key = null)

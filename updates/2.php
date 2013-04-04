@@ -11,7 +11,7 @@ if (!$exisiting_provider) {
 	$provider->code = 'user_emailer';
 	$provider->class_name = 'Notify_User_Email_Provider';
 	$provider->send_mode = Notify_User_Email_Provider::mode_mail;
-	$provider->define_form_fields();
+	$provider->init_form_fields();
 
 	$provider->public_template_css = 'a, a:hover { 
 	text-decoration: none;
@@ -57,7 +57,7 @@ if (!$exisiting_provider) {
 	$provider->code = 'admin_emailer';
 	$provider->class_name = 'Notify_Admin_Email_Provider';
 	$provider->send_mode = Notify_Admin_Email_Provider::mode_mail;
-	$provider->define_form_fields();
+	$provider->init_form_fields();
 
 	$provider->admin_template_css = 'a, a:hover { 
 	text-decoration: none;
