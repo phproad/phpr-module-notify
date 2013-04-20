@@ -1,9 +1,9 @@
 <div>
 	<h2>Add Notification Provider</h2>
-	<div class="content">
-		<div class="form-400">
-			<?=Phpr_Form::open_tag() ?>
-				<? if (!isset($fatalError)): ?>
+	<div class="form-400">
+		<?=Phpr_Form::open_tag() ?>
+			<? if (!isset($fatal_error)): ?>
+				<div class="content">
 					<div class="scrollable-list thickBorder height-400">
 						<ul class="selectable-list">
 						<?
@@ -28,14 +28,18 @@
 						<? endforeach ?>
 						</ul>
 					</div>
+				</div>
+				<div class="footer">
 					<?=admin_button('Cancel', array('onclick'=>'return cancelPopup()')) ?>
-					<div class="clear"></div>
-				<? else: ?>
+				</div>
+			<? else: ?>
+				<div class="content">
 					<?=flash()?>
+				</div>
+				<div class="footer">
 					<?=admin_button('Cancel', array('onclick'=>'return cancelPopup()')) ?>
-					<div class="clear"></div>
-				<? endif ?>
-			</form>
-		</div>
+				</div>
+			<? endif ?>
+		</form>
 	</div>
 </div>

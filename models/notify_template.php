@@ -29,7 +29,7 @@ class Notify_Template extends Db_ActiveRecord
 		if ($this->form_fields_defined) return false; 
 		$this->form_fields_defined = true;
 
-		$this->has_template_extension();
+		$this->init_template_extension();
 
 		$this->add_form_field('is_enabled')->tab('Message');
 
@@ -55,7 +55,7 @@ class Notify_Template extends Db_ActiveRecord
 
 	public function after_fetch()
 	{
-		$this->init_form_fields();
+		$this->define_form_fields();
 	}
 
 	public function before_create($session_key = null)
@@ -77,7 +77,7 @@ class Notify_Template extends Db_ActiveRecord
 	// Service methods
 	// 
 
-	public function has_template_extension()
+	public function init_template_extension()
 	{
 		if (!strlen($this->class_name))
 			return false;

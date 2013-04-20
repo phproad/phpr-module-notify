@@ -114,7 +114,7 @@ class Notify_Admin_Email_Provider extends Notify_Provider_Base
 
 	public function init_template_data($host)
 	{
-		if (!$host->has_template_extension())
+		if (!$host->init_template_extension())
 			return;
 
 		if (!strlen($host->admin_email_subject)) $host->admin_email_subject = $host->get_internal_subject();

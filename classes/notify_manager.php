@@ -53,6 +53,7 @@ class Notify_Manager
 		$template->class_name = get_class($driver);
 
 		$template->save();
+		$template->init_template_extension();
 		return $template;
 	}
 }
