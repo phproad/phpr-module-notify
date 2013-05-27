@@ -63,7 +63,7 @@ class Notify_Template extends Db_ActiveRecord
 		// Prevent duplication
 		if (strlen($this->code))
 		{
-			Db_Helper::query("delete from email_templates where code=:code", array(
+			Db_Helper::query("delete from notify_templates where code=:code", array(
 				'code' => $this->code
 			));
 		}
