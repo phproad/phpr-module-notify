@@ -8,7 +8,7 @@ class Notify_Module extends Core_Module_Base
 		return new Core_Module_Detail(
 			"Notify",
 			"Notification engine",
-			"PHP Road",
+			"PHPRoad",
 			"http://phproad.com/"
 		);
 	}
