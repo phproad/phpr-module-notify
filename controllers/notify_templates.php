@@ -12,7 +12,7 @@ class Notify_Templates extends Admin_Settings_Controller
 	public $form_redirect = null;
 	public $form_create_title = 'New Notification Template';
 	public $form_edit_title = 'Edit Notification Template';
-	public $form_flash_id = 'form_flash';
+	public $form_flash_id = 'form-flash';
 
 	public $list_search_enabled = true;
 	public $list_search_fields = array('@code', '@subject', '@description');

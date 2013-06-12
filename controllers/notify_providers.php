@@ -14,7 +14,7 @@ class Notify_Providers extends Admin_Controller
 	public $form_model_class = 'Notify_Provider';
 	public $form_not_found_message = 'Notify provider not found';
 	public $form_redirect = null;
-	public $form_flash_id = 'form_flash';
+	public $form_flash_id = 'form-flash';
 
 	public $form_edit_save_flash = 'The notify provider has been successfully saved';
 	public $form_create_save_flash = 'The notify provider has been successfully added';
