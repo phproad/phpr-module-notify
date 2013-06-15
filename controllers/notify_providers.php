@@ -92,7 +92,14 @@ class Notify_Providers extends Admin_Controller
 	{
 		try
 		{
-			$obj = strlen($id) ? $this->form_find_model_object($id) : $this->form_create_model_object();
+			if (is_numeric($id)) {
+				$obj = $this->form_find_model_object($id);
+			} 
+			else {
+				$obj = $this->form_create_model_object();
+				$obj->class_name = $id;
+			}
+
 			$obj->validate_data(post($this->form_model_class, array()));
 			if ($obj->send_test_message($this->active_user))
 				echo Admin_Html::flash_message('The test message has been successfully sent.');
