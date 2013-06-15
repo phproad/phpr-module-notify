@@ -109,7 +109,9 @@ class Notify_SmsGlobal_Provider extends Notify_Provider_Base
 			return;
 
 		$fields = array();
-		$fields['username'] = $host->username;
+		$fields['action'] = 'sendsms';
+		$fields['user'] = $host->username;
+		$fields['from'] = $host->from;
 		$fields['password'] = $host->password;
 		$fields['to'] = implode(',', $recipient_numbers);
 		$fields['text'] = $message;
@@ -131,8 +133,11 @@ class Notify_SmsGlobal_Provider extends Notify_Provider_Base
 			curl_close($ch);
 			
 		$matches = array();
-		if (!preg_match('/OK:\s+(.*)$/m', $response, $matches))
+		if (preg_match('/ERROR:\s+(.*)$/m', $response, $matches))
 			throw new Phpr_SystemException('Error sending SMS message: '. $matches[1]);
+			
+		if (!preg_match('/OK:\s+(.*)$/m', $response, $matches))
+			throw new Phpr_SystemException("Error sending SMS message.");
 			
 		$code = $matches[1];
 		if ($code != '0')
