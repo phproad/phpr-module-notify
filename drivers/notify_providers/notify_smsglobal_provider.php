@@ -26,7 +26,7 @@ class Notify_SmsGlobal_Provider extends Notify_Provider_Base
 	{
 		$host->add_field('username', 'User Name', 'left')->display_as(frm_text)->comment('Your SMSGlobal username', 'above')->validation()->fn('trim')->required('Please specify your user name');
 		$host->add_field('password', 'Password', 'right')->display_as(frm_password)->comment('Your SMSGlobal password', 'above')->validation()->fn('trim')->required('Please specify your password');
-		$host->add_field('from', 'Sender ID', 'left')->display_as(frm_text)->comment('MSIDSN or Sender ID that the message will appear from. Eg: 61409317436  (Do not use +before the country code)', 'above')->validation()->fn('trim')->required('Please specify a sender ID');
+		$host->add_field('from', 'Sender ID', 'left')->display_as(frm_text)->comment('MSIDSN or Sender ID that the message will appear from.', 'above')->validation()->fn('trim')->required('Please specify a sender ID');
 		$host->add_field('maxsplit', 'Split messages', 'right', db_bool)->display_as(frm_checkbox)->comment('If enabled, messages that exceed 160 characters will be split into multiple messages.', 'below');
 	}
 	
@@ -107,6 +107,9 @@ class Notify_SmsGlobal_Provider extends Notify_Provider_Base
 		$recipient_numbers = $this->get_recipient_numbers($recipients);
 		if (!count($recipient_numbers))
 			return;
+
+		if (substr($host->from, 0, 1) == '+')
+			$host->from = substr($host->from, 1);
 
 		$fields = array();
 		$fields['action'] = 'sendsms';
