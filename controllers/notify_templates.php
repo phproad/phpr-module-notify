@@ -15,8 +15,8 @@ class Notify_Templates extends Admin_Settings_Controller
 	public $form_flash_id = 'form_flash';
 
 	public $list_search_enabled = true;
-	public $list_search_fields = array('@code', '@subject', '@description');
-	public $list_search_prompt = 'find templates by code, subject or description';
+	public $list_search_fields = array('@code', '@description');
+	public $list_search_prompt = 'find templates by code or description';
 
 	public $form_edit_save_flash = 'Notification template has been successfully saved';
 	public $form_create_save_flash = 'Notification template has been successfully added';
