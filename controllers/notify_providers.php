@@ -14,7 +14,7 @@ class Notify_Providers extends Admin_Controller
 	public $form_model_class = 'Notify_Provider';
 	public $form_not_found_message = 'Notify provider not found';
 	public $form_redirect = null;
-	public $form_flash_id = 'form_flash';
+	public $form_flash_id = 'form-flash';
 
 	public $form_edit_save_flash = 'The notify provider has been successfully saved';
 	public $form_create_save_flash = 'The notify provider has been successfully added';
@@ -92,7 +92,14 @@ class Notify_Providers extends Admin_Controller
 	{
 		try
 		{
-			$obj = strlen($id) ? $this->form_find_model_object($id) : $this->form_create_model_object();
+			if (is_numeric($id)) {
+				$obj = $this->form_find_model_object($id);
+			} 
+			else {
+				$obj = $this->form_create_model_object();
+				$obj->class_name = $id;
+			}
+
 			$obj->validate_data(post($this->form_model_class, array()));
 			if ($obj->send_test_message($this->active_user))
 				echo Admin_Html::flash_message('The test message has been successfully sent.');

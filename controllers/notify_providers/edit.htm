@@ -21,16 +21,10 @@
 
 				<div id="fixed-toolbar" class="top">
 					<div class="form-toolbar">
-						<?=admin_ajax_button('Save', 'edit_on_save', array('class'=>'btn-success'), "prepareFunction: function(){phprTriggerSave();}") ?>
-						<?
-							$user_email = $this->active_user->email;
-							if (strlen($user_email))
-								echo admin_ajax_button('Send test message', 'on_test', array('class'=>'btn-primary'), "confirm: 'Test message will be sent to your email address ".$user_email.". Continue?', loadIndicator: {hideOnSuccess: true}, hideErrorOnSuccess: false, update: 'form_flash', prepareFunction: function(){phprTriggerSave();}");
-							else
-								echo admin_ajax_button('Send test message', 'on_test', array('class'=>'btn-primary'), "alert: 'Your email address is not defined. Please specify it in the user parameters.'");
-						?>					
-						<?=admin_ajax_button('Cancel', 'edit_on_cancel') ?>
-						<?=admin_ajax_button('Delete', 'edit_on_delete', array('class'=>"btn-danger pull-right"), "confirm: 'Do you really want to delete this provider?'") ?>
+						<?= admin_ajax_button('Save', 'edit_on_save', array('class'=>'btn-success'), "beforeSend: function(){phprTriggerSave();}") ?>
+						<?= admin_ajax_button('Send test message', 'on_test', array('class'=>'btn-primary'), "confirm: 'Test message will attempt to send using the details found on your staff account. Continue?', loadIndicator: {hideOnSuccess: true}, hideErrorOnSuccess: false, update: '#form-flash', beforeSend: function(){phprTriggerSave();}"); ?>
+						<?= admin_ajax_button('Cancel', 'edit_on_cancel') ?>
+						<?= admin_ajax_button('Delete', 'edit_on_delete', array('class'=>"btn-danger pull-right"), "confirm: 'Do you really want to delete this provider?'") ?>
 					</div>
 				</div>
 

@@ -1,2 +1,4 @@
 #1|1.0.1 First version
 #2|1.0.2 Create standard drivers
+#3|1.0.3 Add SMSGlobal notification provider
+#4|1.0.4 Add SMS Matrix and Clickatell notification providers
