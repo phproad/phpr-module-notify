@@ -99,6 +99,7 @@ class Notify_User_Email_Provider extends Notify_Provider_Base
 
 	public function build_template_ui($host, $context = null)
 	{
+		$host->add_field('user_template_disabled', 'Disable User Email', 'full', db_bool)->comment('Check this box if you do not want this template to be sent')->tab('User Email');
 		$host->add_field('user_email_subject', 'Email Subject', 'full', db_varchar)->tab('User Email');
 		$host->add_field('user_email_content', 'Email Content', 'full', db_varchar)->display_as(frm_html)->size('huge')->tab('User Email');
 	}
@@ -117,6 +118,9 @@ class Notify_User_Email_Provider extends Notify_Provider_Base
 
 	public function send_notification($template) 
 	{
+		if ($template->user_template_disabled)
+			return false;
+		
 		if ($template->user_email_subject && $template->user_email_content) {
 			$this->send_email(
 				$template->get_recipients(), 

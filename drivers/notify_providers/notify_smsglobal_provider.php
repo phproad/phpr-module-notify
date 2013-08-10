@@ -54,7 +54,10 @@ class Notify_SmsGlobal_Provider extends Notify_Provider_Base
 
 	public function build_template_ui($host, $context = null)
 	{
+		$host->add_field('user_sms_template_disabled', 'Disable User SMS Message', 'full', db_bool)->tab('SMS');
 		$host->add_field('user_sms_message', 'User SMS Message', 'full', db_varchar)->tab('SMS');
+
+		$host->add_field('admin_sms_template_disabled', 'Disable Admin SMS Message', 'full', db_bool)->tab('SMS');
 		$host->add_field('admin_sms_message', 'Admin SMS Message', 'full', db_varchar)->tab('SMS');
 	}
 
@@ -76,10 +79,10 @@ class Notify_SmsGlobal_Provider extends Notify_Provider_Base
 
 	public function send_notification($template) 
 	{
-		if ($template->user_sms_message)
+		if ($template->user_sms_message && !$template->user_sms_template_disabled)
 			$this->send_message($template->get_recipients(), $template->user_sms_message);
 
-		if ($template->admin_sms_message)
+		if ($template->admin_sms_message && !$template->admin_sms_template_disabled)
 			$this->send_message($template->get_recipients(true), $template->admin_sms_message);
 
 		return true;

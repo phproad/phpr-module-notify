@@ -99,6 +99,7 @@ class Notify_Admin_Email_Provider extends Notify_Provider_Base
 
 	public function build_template_ui($host, $context = null)
 	{
+		$host->add_field('admin_template_disabled', 'Disable Staff Email', 'full', db_bool)->comment('Check this box if you do not want this template to be sent')->tab('Staff Email');
 		$host->add_field('admin_email_subject', 'Email Subject', 'full', db_varchar)->tab('Staff Email');
 		$host->add_field('admin_email_content', 'Email Content', 'full', db_varchar)->display_as(frm_html)->size('huge')->tab('Staff Email');
 	}
@@ -117,6 +118,9 @@ class Notify_Admin_Email_Provider extends Notify_Provider_Base
 
 	public function send_notification($template) 
 	{
+		if ($template->admin_template_disabled)
+			return false;
+		
 		if ($template->admin_email_subject && $template->admin_email_content) {
 			$this->send_email(
 				$template->get_recipients(true), 
@@ -126,7 +130,7 @@ class Notify_Admin_Email_Provider extends Notify_Provider_Base
 			return true;
 		}
 		else 
-			return false;		
+			return false;
 	}
 
 	public function send_test_message($recipient) 
